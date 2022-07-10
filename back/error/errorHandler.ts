@@ -20,6 +20,13 @@ const errorHandler = (
           'Could not get a response from the DB. Either a problem with the query or the DB server. Check server logs for details.'
         );
       break;
+    case 400:
+      log(msg);
+      log(error);
+      res
+        .status(400)
+        .send('Something went wrong. Check server logs for details.');
+      break;
     case 503:
       log('Failed connecting to DB');
       res.status(503).send('Failed connecting to DB');

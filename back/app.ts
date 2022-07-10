@@ -4,12 +4,14 @@ import { sequelize } from './utils/db';
 import log from './utils/log';
 import insertRouter from './routers/R-insert';
 import verifyInsertBody from './middlewares/varifyInsertBody';
+import testRouter from './routers/R-test';
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/insert', verifyInsertBody, insertRouter);
+app.use('/test', testRouter);
 app.get('/', (_req, res) => {
   res.send('Hello there!');
 });
