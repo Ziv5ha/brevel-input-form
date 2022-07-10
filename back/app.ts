@@ -1,5 +1,5 @@
 import express from 'express';
-import sequelize from './utils/db';
+import { sequelize } from './utils/db';
 import log from './utils/log';
 const app = express();
 
