@@ -14,7 +14,6 @@ const sequelize = CONNECTION_STRING
 const Measurement = sequelize.define(
   'Measurement',
   {
-    // Model attributes are defined here
     Date: {
       type: DataTypes.DATE,
       allowNull: false,

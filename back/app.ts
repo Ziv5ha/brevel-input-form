@@ -1,7 +1,13 @@
 import express from 'express';
+import cors from 'cors';
 import { sequelize } from './utils/db';
 import log from './utils/log';
+import insertRouter from './routers/R-insert';
+import verifyInsertBody from './middlewares/varifyInsertBody';
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 app.get('/', (_req, res) => {
   res.send('Hello there!');
