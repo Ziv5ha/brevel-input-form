@@ -9,6 +9,8 @@ const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log('err');
+
   const { type, error, msg } = err;
   switch (type) {
     case 404:
@@ -40,4 +42,4 @@ const errorHandler = (
   }
 };
 
-module.exports = { errorHandler };
+export default errorHandler;

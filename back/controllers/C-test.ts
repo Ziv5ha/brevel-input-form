@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { Measurement } from '../utils/db';
+import Measurement from '../models/M-measurements';
 
 const testGet = async (req: Request, res: Response, next: NextFunction) => {
   try {

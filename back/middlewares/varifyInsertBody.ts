@@ -3,56 +3,61 @@ import moment from 'moment';
 
 const verifyInsertBody = (req: Request, res: Response, next: NextFunction) => {
   const {
-    Date,
-    Reactor_ID,
-    Biology_ID,
-    Experiment_Name,
-    Algea_Type,
-    Dry_Weight,
-    Nitrogen,
-    Glucose,
-    Protein,
-    Chlorophyl,
+    date_time,
+    reactor_id,
+    biology_id,
+    experiment_name,
+    algea_type,
+    growing_type,
+    dry_weight,
+    nitrogen,
+    glucose,
+    protein,
+    chlorophyl,
     phosphorus,
-    Microscope_Observation,
-    Notes,
+    microscope_observation,
+    notes,
   } = req.body;
   if (
     !(
-      Date &&
-      Reactor_ID &&
-      Biology_ID &&
-      Experiment_Name &&
-      Algea_Type &&
-      Dry_Weight &&
-      Nitrogen &&
-      Glucose &&
-      Protein &&
-      Chlorophyl &&
+      date_time &&
+      reactor_id &&
+      biology_id &&
+      experiment_name &&
+      algea_type &&
+      growing_type &&
+      dry_weight &&
+      nitrogen &&
+      glucose &&
+      protein &&
+      chlorophyl &&
       phosphorus &&
-      Microscope_Observation
+      microscope_observation &&
+      notes
     )
   )
-    next({ type: 400, msg: 'Missing params' });
+    next({ type: 400, error: JSON.stringify(req.body), msg: 'Missing params' });
   const validNumbers = areNumbers([
-    Reactor_ID,
-    Biology_ID,
-    Dry_Weight,
-    Nitrogen,
-    Glucose,
-    Protein,
-    Chlorophyl,
+    reactor_id,
+    biology_id,
+    dry_weight,
+    nitrogen,
+    glucose,
+    protein,
+    chlorophyl,
     phosphorus,
   ]);
   const validStrings = areStrings([
-    Experiment_Name,
-    Algea_Type,
-    Microscope_Observation,
+    experiment_name,
+    algea_type,
+    growing_type,
+    microscope_observation,
   ]);
-  const validMoment = isValidMoment(Date);
-  const validNote = isStringOrNull(Notes);
+  const validMoment = isValidMoment(date_time);
+  const validNote = isStringOrNull(notes);
   if (validNumbers && validStrings && validMoment && validNote) next();
-  else next({ type: 400, msg: 'Wrong params' });
+  else
+    next({ type: 400, error: JSON.stringify(req.body), msg: 'Wrong params' });
 };
 
 const areNumbers = (arr: unknown[]): arr is number[] => {
