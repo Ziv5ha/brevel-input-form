@@ -1,13 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { success } from '../helpers/notifications';
 import InsertChooseId from './InsertChooseId';
 import InsertDatetime from './InsertDatetime';
 import InsertNumberInput from './InsertNumberInput';
 import InsertOptions from './InsertOptions';
 import InsertTextInput from './InsertTextInput';
-
-import AWN from 'awesome-notifications';
-let notifier = new AWN({});
 
 export default function InsertForm() {
   const emptyMeasurement = {
@@ -47,7 +45,7 @@ export default function InsertForm() {
     e.preventDefault();
     await axios.post('http://localhost:8081/insert/', measurement);
     setMeasurement(emptyMeasurement);
-    notifier.success('Measurement inserted successfully.');
+    success('Measurement inserted successfully.');
   };
 
   return (
@@ -137,15 +135,14 @@ export default function InsertForm() {
         measurement={measurement}
         setMeasurement={setMeasurement}
       />
+      <button type='submit'>submit</button>
       <button
-        type='submit'
-        // onClick={(e) => {
-        //   e.preventDefault();
-        //   console.log(measurement);
-        //   setMeasurement(emptyMeasurement);
-        // }}
+        type='button'
+        onClick={() => {
+          success('test');
+        }}
       >
-        submit
+        test notification
       </button>
     </form>
   );

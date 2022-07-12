@@ -1,9 +1,5 @@
-import React, { useRef, useState } from 'react';
-import {
-  updateMeasurementNum,
-  updateMeasurementOption,
-  updateMeasurementStr,
-} from '../helpers/updateMeasurement';
+import React, { useRef } from 'react';
+import { updateMeasurementNum } from '../helpers/updateMeasurement';
 
 export default function InsertChooseId({
   label,
