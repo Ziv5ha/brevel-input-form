@@ -2,18 +2,18 @@ import { Request } from 'express';
 
 declare interface InsertRequest extends Request {
   body: {
-    Date: string;
-    Reactor_ID: number;
-    Biology_ID: number;
-    Experiment_Name: string;
-    Algea_Type: string;
-    Dry_Weight: number;
-    Nitrogen: number;
-    Glucose: number;
-    Protein: number;
-    Chlorophyl: number;
+    date_time: string;
+    reactor_id: number;
+    biology_id: number;
+    experiment_name: string;
+    algea_type: string;
+    dry_Weight: number;
+    nitrogen: number;
+    glucose: number;
+    protein: number;
+    chlorophyl: number;
     phosphorus: number;
-    Microscope_Observation: string;
-    Notes: string | null;
+    microscope_observation: string;
+    notes: string | null;
   };
 }

@@ -5,6 +5,7 @@ import log from './utils/log';
 import insertRouter from './routers/R-insert';
 import verifyInsertBody from './middlewares/varifyInsertBody';
 import testRouter from './routers/R-test';
+import errorHandler from './error/errorHandler';
 const app = express();
 
 app.use(cors());
@@ -15,6 +16,8 @@ app.use('/test', testRouter);
 app.get('/', (_req, res) => {
   res.send('Hello there!');
 });
+
+app.use(errorHandler);
 
 const start = async () => {
   try {
