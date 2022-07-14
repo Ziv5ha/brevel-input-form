@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { updateMeasurementNum } from '../helpers/updateMeasurement';
+import Select from 'react-select';
 
 export default function InsertChooseId({
   label,
@@ -13,31 +14,49 @@ export default function InsertChooseId({
   measurement: IMeasurement;
   setMeasurement: React.Dispatch<React.SetStateAction<IMeasurement>>;
 }) {
-  const selectRef = useRef<HTMLSelectElement>(null);
-
-  const onSelectFunc = () => {
-    const value = Number(selectRef.current?.value || 0);
-    updateMeasurementNum(setMeasurement, label, value);
+  const colourStyles = {
+    control: (styles: any) => ({
+      ...styles,
+      width: '10em',
+      minHeight: '2.2em',
+      height: '2.2em',
+      fontSize: '0.8em',
+    }),
+    option: (
+      styles: any,
+      { isSelected, isFocused }: { isSelected: boolean; isFocused: boolean }
+    ) => {
+      return {
+        ...styles,
+        fontSize: '0.8em',
+        color: '#000',
+        backgroundColor: isSelected
+          ? '#9EBFA6'
+          : isFocused
+          ? '#e2e2e2'
+          : '#fff',
+      };
+    },
   };
 
-  const optionsElems = Object.keys(idObj).map((reactor_id) => (
-    <option key={reactor_id} value={reactor_id} label={idObj[reactor_id]} />
-  ));
+  const optionsArr = Object.keys(idObj).map((reactor_id) => ({
+    value: reactor_id,
+    label: idObj[reactor_id],
+  }));
 
   return (
-    <div>
+    <div className='input-container'>
       <label htmlFor={label}>{label.replaceAll('_', ' ')}: </label>
-      <select
-        id={label}
-        value={measurement[label]}
-        onChange={onSelectFunc}
-        placeholder={`Select ${label}`}
-        required
-        ref={selectRef}
-      >
-        <option value='' label={`-- Choose ${label} --`} />
-        {optionsElems}
-      </select>
+      <div className='select-container'>
+        <Select
+          styles={colourStyles}
+          options={optionsArr}
+          onChange={(e) => {
+            const value = Number(e?.value || 0);
+            updateMeasurementNum(setMeasurement, label, value);
+          }}
+        />
+      </div>
     </div>
   );
 }
