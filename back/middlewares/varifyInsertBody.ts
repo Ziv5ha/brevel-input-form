@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import moment from 'moment';
+const moment = require('moment');
+// import moment from 'moment';
 
 const verifyInsertBody = (req: Request, res: Response, next: NextFunction) => {
   const {
@@ -32,12 +33,11 @@ const verifyInsertBody = (req: Request, res: Response, next: NextFunction) => {
       protein &&
       chlorophyl &&
       phosphorus &&
-      microscope_observation &&
-      notes
+      microscope_observation
     )
   )
     next({ type: 400, error: JSON.stringify(req.body), msg: 'Missing params' });
-  const validNumbers = areNumbers([
+  const numValues = [
     reactor_id,
     biology_id,
     dry_weight,
@@ -46,18 +46,29 @@ const verifyInsertBody = (req: Request, res: Response, next: NextFunction) => {
     protein,
     chlorophyl,
     phosphorus,
-  ]);
-  const validStrings = areStrings([
+  ];
+  const validNumbers = areNumbers(numValues);
+  const strValues = [
     experiment_name,
     algea_type,
     growing_type,
     microscope_observation,
-  ]);
+  ];
+  const validStrings = areStrings(strValues);
   const validMoment = isValidMoment(date_time);
   const validNote = isStringOrNull(notes);
-  if (validNumbers && validStrings && validMoment && validNote) next();
-  else
-    next({ type: 400, error: JSON.stringify(req.body), msg: 'Wrong params' });
+  try {
+    if (!validNumbers)
+      throw new Error(`invalid numbers: ${numValues.join(', ')}`);
+    if (!validStrings)
+      throw new Error(`invalid values: ${strValues.join(', ')}`);
+    if (!validMoment) throw new Error(`invalid date: ${date_time}`);
+    if (!validNote) throw new Error(`invalid note: ${notes}`);
+    req.body.notes = notes ? notes : null;
+    next();
+  } catch (error) {
+    next({ type: 400, error: error, msg: 'Wrong params' });
+  }
 };
 
 const areNumbers = (arr: unknown[]): arr is number[] => {

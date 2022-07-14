@@ -1,6 +1,7 @@
 // require('dotenv').config();
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
+require('dotenv').config();
 
 const config = {
   HOST: process.env.HOST || 'localhost',
