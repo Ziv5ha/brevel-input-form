@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { updateMeasurementStr } from '../helpers/updateMeasurement';
+import '../styles/textInput.css';
 
 export default function InsertTextInput({
   label,
@@ -12,21 +13,23 @@ export default function InsertTextInput({
   measurement: IMeasurement;
   setMeasurement: React.Dispatch<React.SetStateAction<IMeasurement>>;
 }) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const onChangeFunc = () => {
     const value = inputRef.current?.value || '';
     updateMeasurementStr(setMeasurement, label, maxLength, value);
   };
   return (
-    <div>
+    <div className='input-container'>
       <label htmlFor={label}>{label.replaceAll('_', ' ')}: </label>
-      <input
+      <textarea
+        className='text-input'
         id={label}
         ref={inputRef}
         onChange={onChangeFunc}
         value={measurement[label] || ''}
+        rows={Math.ceil((measurement[label]?.length || 1) / 30)}
         maxLength={maxLength}
-        required
+        required={label === 'experiment_name'}
       />
     </div>
   );
