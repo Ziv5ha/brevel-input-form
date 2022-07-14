@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { updateMeasurementNum } from '../helpers/updateMeasurement';
+import '../styles/numInput.css';
 
 export default function InsertNumberInput({
   label,
@@ -16,7 +17,7 @@ export default function InsertNumberInput({
 
   // Event handlers
   const onChangeFunc = () => {
-    const value = Number(inputRef.current?.value) || 0;
+    const value = Number(Number(inputRef.current?.value).toFixed(2)) || 0;
     updateMeasurementNum(setMeasurement, label, value);
   };
   const onBlurFunc = () => {
@@ -24,7 +25,7 @@ export default function InsertNumberInput({
       if (inputRef.current.value) {
         inputRef.current.value = measurement[label].toString();
       } else {
-        inputRef.current.value = '0';
+        inputRef.current.value = '0.0';
         updateMeasurementNum(setMeasurement, label, 0);
       }
     }
@@ -38,19 +39,23 @@ export default function InsertNumberInput({
   };
 
   return (
-    <div>
+    <div className='input-container'>
       <label htmlFor={label}>{label.replaceAll('_', ' ')}: </label>
-      <input
-        id={label}
-        type='number'
-        ref={inputRef}
-        onChange={onChangeFunc}
-        onBlur={onBlurFunc}
-        onFocus={onFocusFunc}
-        value={measurement[label]}
-        required
-      />
-      {UnitOfMeasure ? UnitOfMeasure : ''}
+      <div className='num-container'>
+        <input
+          className='num-input'
+          id={label}
+          type='number'
+          ref={inputRef}
+          onChange={onChangeFunc}
+          onBlur={onBlurFunc}
+          onFocus={onFocusFunc}
+          defaultValue='0.0'
+          value={measurement[label]}
+          required
+        />
+        {UnitOfMeasure ? UnitOfMeasure : ''}
+      </div>
     </div>
   );
 }
