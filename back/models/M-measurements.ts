@@ -62,7 +62,7 @@ const Measurement = sequelize.define(
     },
   },
   {
-    tableName: 'Measurements',
+    tableName: 'manual_measurement',
     timestamps: false,
   }
 );

@@ -20,6 +20,6 @@ const Reactor_ID = sequelize.define(
   }
 );
 
-Reactor_ID.sync();
+// Reactor_ID.sync();
 
 export default Reactor_ID;

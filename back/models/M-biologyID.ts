@@ -20,6 +20,6 @@ const Biology_ID = sequelize.define(
   }
 );
 
-Biology_ID.sync();
+// Biology_ID.sync();
 
 export default Biology_ID;
