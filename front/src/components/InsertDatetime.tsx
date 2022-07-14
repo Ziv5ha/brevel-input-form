@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { getMoment } from '../helpers/moment';
 import { updateMeasurementDate } from '../helpers/updateMeasurement';
+import '../styles/datetime.css';
 
 export default function InsertDatetime({
   measurement,
@@ -20,18 +21,25 @@ export default function InsertDatetime({
     updateMeasurementDate(setMeasurement, dateSrting);
   };
   return (
-    <div>
+    <div className='input-container'>
       <label htmlFor='datetime'>Date and time: </label>
-      <input
-        id='datetime'
-        type='datetime-local'
-        ref={datetimeRef}
-        onChange={onChangeFunc}
-      />
-      <button type='button' onClick={btnOnClick}>
-        Now
-      </button>
-      {measurement.date_time}
+      <span className='output'>{measurement.date_time}</span>
+      <div className='time-container'>
+        <input
+          className='date-input'
+          id='datetime'
+          type='datetime-local'
+          ref={datetimeRef}
+          onChange={onChangeFunc}
+        />
+        <button
+          className='date-btn date-input'
+          type='button'
+          onClick={btnOnClick}
+        >
+          Now
+        </button>
+      </div>
     </div>
   );
 }

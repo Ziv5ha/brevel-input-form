@@ -1,0 +1,29 @@
+.time-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.date-input {
+  cursor: pointer;
+  margin: 0.25em 0.1em;
+  padding: 0.2em 0.62em 0 0.61em;
+  background-color: #fff;
+  width: 1em;
+  border-radius: 0.3em;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 1px 1px 2px 0px black;
+}
+.date-btn {
+  cursor: pointer;
+  margin: 0.25em 0.1em;
+  padding: 0.38em 0em;
+  width: 2.9em;
+  font-size: 0.8em;
+  border-radius: 0.4em;
+  border: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.output {
+  margin: 0 1em;
+}
