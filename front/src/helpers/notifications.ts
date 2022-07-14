@@ -1,13 +1,8 @@
 import { toast } from 'react-toastify';
 
-export const success = (str: string) => {
-  toast.success(str, {
-    // position: 'bottom-right',
-    // autoClose: 3000,
-    // hideProgressBar: false,
-    // closeOnClick: true,
-    // pauseOnHover: true,
-    // draggable: true,
-    // progress: undefined,
-  });
+export const notifySuccess = (str: string) => {
+  toast.success(str);
+};
+export const notifyError = (str: string) => {
+  toast.error(str);
 };

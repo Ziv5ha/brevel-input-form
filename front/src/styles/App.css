@@ -2,12 +2,25 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.2em;
 }
 
 .App-logo {
+  position: fixed;
+  top: 1em;
+  right: 1em;
   align-self: flex-end;
-  margin: 0.5em;
-  height: 5em;
+  height: 3.4em;
   pointer-events: none;
   z-index: -1;
+}
+
+@media only screen and (max-width: 800px) and (min-width: 400px) {
+  .App-logo {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: 1em;
+  }
 }

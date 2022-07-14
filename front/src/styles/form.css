@@ -1,0 +1,32 @@
+form {
+  margin: 1em auto;
+  transition: all 0.3s;
+}
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 28em;
+  padding: 0.1em 0;
+  justify-content: space-between;
+}
+.submit-btn {
+  cursor: pointer;
+  margin: 0.3em;
+  padding: 0.4em;
+  width: 4em;
+  font-size: 0.9em;
+  border-radius: 0.4em;
+  border: none;
+  box-shadow: 1px 1px 1px 0px black;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.submit-btn:active {
+  box-shadow: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  form {
+    margin: 0.7em auto;
+  }
+}

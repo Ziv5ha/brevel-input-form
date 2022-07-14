@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { success } from '../helpers/notifications';
+import { notifySuccess, notifyError } from '../helpers/notifications';
 import InsertChooseId from './InsertChooseId';
 import InsertDatetime from './InsertDatetime';
 import InsertNumberInput from './InsertNumberInput';
 import InsertOptions from './InsertOptions';
 import InsertTextInput from './InsertTextInput';
+import '../styles/form.css';
 
 export default function InsertForm() {
   const emptyMeasurement = {
@@ -15,12 +16,12 @@ export default function InsertForm() {
     experiment_name: '',
     algea_type: '',
     growing_type: '',
-    dry_weight: 0,
-    nitrogen: 0,
-    glucose: 0,
-    protein: 0,
-    chlorophyl: 0,
-    phosphorus: 0,
+    dry_weight: 0.0,
+    nitrogen: 0.0,
+    glucose: 0.0,
+    protein: 0.0,
+    chlorophyl: 0.0,
+    phosphorus: 0.0,
     microscope_observation: '',
     notes: '',
   };
@@ -31,8 +32,10 @@ export default function InsertForm() {
   useEffect(() => {
     (async () => {
       try {
-        const reactorsRes = await axios.get('http://localhost:8081/id/reactor');
-        const biologyRes = await axios.get('http://localhost:8081/id/biology');
+        // const reactorsRes = await axios.get('http://localhost:8081/id/reactor');
+        // const biologyRes = await axios.get('http://localhost:8081/id/biology');
+        const reactorsRes = await axios.get('./id/reactor');
+        const biologyRes = await axios.get('./id/biology');
         setReactorsObj(reactorsRes.data);
         setBiologyObj(biologyRes.data);
       } catch (error) {
@@ -42,10 +45,15 @@ export default function InsertForm() {
   }, []);
 
   const onSubmitFunc = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await axios.post('http://localhost:8081/insert/', measurement);
-    setMeasurement(emptyMeasurement);
-    success('Measurement inserted successfully.');
+    try {
+      e.preventDefault();
+      // await axios.post('http://localhost:8081/insert/', measurement);
+      await axios.post('./insert/', measurement);
+      setMeasurement(emptyMeasurement);
+      notifySuccess('Measurement inserted successfully.');
+    } catch (error) {
+      notifyError('Failed to insert Measurement.');
+    }
   };
 
   return (
@@ -135,14 +143,8 @@ export default function InsertForm() {
         measurement={measurement}
         setMeasurement={setMeasurement}
       />
-      <button type='submit'>submit</button>
-      <button
-        type='button'
-        onClick={() => {
-          success('test');
-        }}
-      >
-        test notification
+      <button type='submit' className='submit-btn'>
+        submit
       </button>
     </form>
   );
