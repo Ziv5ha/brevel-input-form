@@ -7,6 +7,7 @@ import InsertNumberInput from './InsertNumberInput';
 import InsertOptions from './InsertOptions';
 import InsertTextInput from './InsertTextInput';
 import '../styles/form.css';
+import Disconected from './Disconnected';
 
 export default function InsertForm() {
   const emptyMeasurement = {
@@ -56,96 +57,103 @@ export default function InsertForm() {
     }
   };
 
-  return (
-    <form onSubmit={onSubmitFunc}>
-      <InsertDatetime
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertChooseId
-        label='reactor_id'
-        idObj={reactorsObj}
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertChooseId
-        label='biology_id'
-        idObj={biologyObj}
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertTextInput
-        label='experiment_name'
-        maxLength={30}
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertOptions
-        label='algea_type'
-        options={['Cp utex 25', 'Cp SAG 211/7a', 'other']}
-        maxLength={20}
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertOptions
-        label='growing_type'
-        options={['Mixotrophy', 'Heterotrophy', 'other']}
-        maxLength={15}
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertNumberInput
-        label='dry_weight'
-        UnitOfMeasure='g/L'
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertNumberInput
-        label='nitrogen'
-        UnitOfMeasure='mg/L'
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertNumberInput
-        label='glucose'
-        UnitOfMeasure='g/L'
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertNumberInput
-        label='protein'
-        UnitOfMeasure='%'
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertNumberInput
-        label='chlorophyl'
-        UnitOfMeasure='µg/ml'
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertNumberInput
-        label='phosphorus'
-        UnitOfMeasure='mg/L'
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertOptions
-        label='microscope_observation'
-        options={['Contaminated', 'Not contaminated', 'other']}
-        maxLength={25}
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <InsertTextInput
-        label='notes'
-        maxLength={200}
-        measurement={measurement}
-        setMeasurement={setMeasurement}
-      />
-      <button type='submit' className='submit-btn'>
-        submit
-      </button>
-    </form>
-  );
+  if (
+    Object.keys(reactorsObj).length === 0 ||
+    Object.keys(biologyObj).length === 0
+  ) {
+    return <Disconected />;
+  } else {
+    return (
+      <form onSubmit={onSubmitFunc}>
+        <InsertDatetime
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertChooseId
+          label='reactor_id'
+          idObj={reactorsObj}
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertChooseId
+          label='biology_id'
+          idObj={biologyObj}
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertTextInput
+          label='experiment_name'
+          maxLength={30}
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertOptions
+          label='algea_type'
+          options={['Cp utex 25', 'Cp SAG 211/7a', 'other']}
+          maxLength={20}
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertOptions
+          label='growing_type'
+          options={['Mixotrophy', 'Heterotrophy', 'other']}
+          maxLength={15}
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertNumberInput
+          label='dry_weight'
+          UnitOfMeasure='g/L'
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertNumberInput
+          label='nitrogen'
+          UnitOfMeasure='mg/L'
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertNumberInput
+          label='glucose'
+          UnitOfMeasure='g/L'
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertNumberInput
+          label='protein'
+          UnitOfMeasure='%'
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertNumberInput
+          label='chlorophyl'
+          UnitOfMeasure='µg/ml'
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertNumberInput
+          label='phosphorus'
+          UnitOfMeasure='mg/L'
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertOptions
+          label='microscope_observation'
+          options={['Contaminated', 'Not contaminated', 'other']}
+          maxLength={25}
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <InsertTextInput
+          label='notes'
+          maxLength={200}
+          measurement={measurement}
+          setMeasurement={setMeasurement}
+        />
+        <button type='submit' className='submit-btn'>
+          submit
+        </button>
+      </form>
+    );
+  }
 }

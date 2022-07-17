@@ -4,22 +4,22 @@ import { sequelize } from '../utils/db';
 const Biology_ID = sequelize.define(
   'Biology_ID',
   {
-    biology_id: {
+    biologist_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
-    biology_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
-    tableName: 'biology_id',
+    tableName: 'biologist_id',
     timestamps: false,
   }
 );
 
-// Biology_ID.sync();
+Biology_ID.sync();
 
 export default Biology_ID;

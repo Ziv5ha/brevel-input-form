@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { updateMeasurementNum } from '../helpers/updateMeasurement';
 import Select from 'react-select';
+import displayText from '../helpers/displaytext';
 
 export default function InsertChooseId({
   label,
@@ -46,7 +47,7 @@ export default function InsertChooseId({
 
   return (
     <div className='input-container'>
-      <label htmlFor={label}>{label.replaceAll('_', ' ')}: </label>
+      <label htmlFor={label}>{displayText(label)}: </label>
       <div className='select-container'>
         <Select
           styles={colourStyles}

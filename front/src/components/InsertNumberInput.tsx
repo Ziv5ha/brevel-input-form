@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import displayText from '../helpers/displaytext';
 import { updateMeasurementNum } from '../helpers/updateMeasurement';
 import '../styles/numInput.css';
 
@@ -40,7 +41,7 @@ export default function InsertNumberInput({
 
   return (
     <div className='input-container'>
-      <label htmlFor={label}>{label.replaceAll('_', ' ')}: </label>
+      <label htmlFor={label}>{displayText(label)}: </label>
       <div className='num-container'>
         <input
           className='num-input'

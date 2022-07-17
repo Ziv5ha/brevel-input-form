@@ -79,16 +79,16 @@ var getBiologyIDs = function (_req, res, next) { return __awaiter(void 0, void 0
             case 1:
                 biologyIDRaw = _a.sent();
                 biologyIDRaw.forEach(function (biology) {
-                    var id = biology.getDataValue('biology_id');
-                    var name = biology.getDataValue('biology_name');
+                    var id = biology.getDataValue('biologist_id');
+                    var name = biology.getDataValue('name');
                     biologies_1[id] = name;
                 });
-                (0, log_1["default"])('sent Biology_IDs');
+                (0, log_1["default"])('sent Biologists IDs');
                 res.send(biologies_1);
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _a.sent();
-                msg = "unable to get Biologys form DB";
+                msg = "unable to get Biologists form DB";
                 next({ type: 404, error: error_2, msg: msg });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];

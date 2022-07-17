@@ -20,16 +20,3 @@ It should open a server terminal window and a web page in your browser.
 * keep the server terminal open. *
 
 To close the program simply close the server terminal window.
-
-
-
-
-
-Known issues:
-
-	- If the postgreSQL server shuts down the app crushes.
-	  Make sure the postgreSQL server is running then relaunch the app.
-
-	- If the app can't connect to the DB on startup 
-	  (sould see a page notifing you that you are disconnected),
-	  close the app, Make sure the postgreSQL server is running then relaunch the app.

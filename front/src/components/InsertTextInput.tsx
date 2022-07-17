@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import displayText from '../helpers/displaytext';
 import { updateMeasurementStr } from '../helpers/updateMeasurement';
 import '../styles/textInput.css';
 
@@ -20,7 +21,7 @@ export default function InsertTextInput({
   };
   return (
     <div className='input-container'>
-      <label htmlFor={label}>{label.replaceAll('_', ' ')}: </label>
+      <label htmlFor={label}>{displayText(label)}: </label>
       <textarea
         className='text-input'
         id={label}

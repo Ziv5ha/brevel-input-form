@@ -33,14 +33,14 @@ export const getBiologyIDs = async (
     const biologies = {} as { [key: string]: string };
     const biologyIDRaw = await Biology_ID.findAll();
     biologyIDRaw.forEach((biology) => {
-      const id = biology.getDataValue('biology_id');
-      const name = biology.getDataValue('biology_name');
+      const id = biology.getDataValue('biologist_id');
+      const name = biology.getDataValue('name');
       biologies[id] = name;
     });
-    log('sent Biology_IDs');
+    log('sent Biologists IDs');
     res.send(biologies);
   } catch (error) {
-    const msg = `unable to get Biologys form DB`;
+    const msg = `unable to get Biologists form DB`;
     next({ type: 404, error, msg });
   }
 };

@@ -7,7 +7,7 @@ declare interface InsertRequest extends Request {
     biology_id: number;
     experiment_name: string;
     algea_type: string;
-    dry_Weight: number;
+    dry_weight: number;
     nitrogen: number;
     glucose: number;
     protein: number;
